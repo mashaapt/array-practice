@@ -9,8 +9,19 @@
     />
     <input type="submit" value="Add Todo" class="todo-submit"/>
   </form>
-  <div class="todo {{ (todo.completed ? 'done' : '') }}" *ngFor="let todo of todos; let i = index"></div>
-  <div class="id">{{ i }}</div>
-  <div class="content" (click)="toggleDone(i)">{{ todo.content }}</div>
-  <button class="delete" (click)="deleteTodo(i)">Remove</button>
+  <div 
+  class="todo {{ todo.completed ? 'done' : '' }}" 
+  *ngFor="let todo of todos; let i = index">
+   
+    <div class="id">{{ i }}</div>
+    <div class="content" (click)="toggleDone(i)">{{ todo.content }}</div>
+
+    <div class="date"> {{ date | date }}</div>
+    <button class="delete" (click)="deleteTodo(i)">Remove</button>
+
+
+  </div>
+  
+
+
 </div>

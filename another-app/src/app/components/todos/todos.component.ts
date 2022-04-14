@@ -10,10 +10,14 @@ export class TodosComponent implements OnInit {
 
   todos: Todo[];
   inputTodo: string = '';
+  date: Date;
+  counter: number;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.date = new Date();
+    this.date.setDate(this.date.getDate());
     this.todos = [
       {
         content: 'First todo',
@@ -25,6 +29,11 @@ export class TodosComponent implements OnInit {
       }
     ]
   }
+
+
+  
+   
+  
 
   toggleDone(id: number) {
     this.todos.map((v, i) => {
@@ -46,5 +55,8 @@ export class TodosComponent implements OnInit {
   deleteTodo(id: number) {
     this.todos = this.todos.filter((v, i) => i !== id);
   }
+
+
+  
 
 }
