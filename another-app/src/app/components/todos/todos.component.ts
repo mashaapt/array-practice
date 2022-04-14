@@ -11,7 +11,6 @@ export class TodosComponent implements OnInit {
   todos: Todo[];
   inputTodo: string = '';
   date: Date;
-  counter: number;
 
   constructor() { }
 
@@ -30,20 +29,19 @@ export class TodosComponent implements OnInit {
     ]
   }
 
-
   
-   
   
-
+  
+  
   toggleDone(id: number) {
     this.todos.map((v, i) => {
       if (i === id) v.completed = !v.completed;
-
+      
       return v;
     })
   }
-
-
+  
+  
   addTodo() {
     this.todos.push({
       content: this.inputTodo,
@@ -51,12 +49,13 @@ export class TodosComponent implements OnInit {
     });
     this.inputTodo = '';
   }
-
+  
   deleteTodo(id: number) {
     this.todos = this.todos.filter((v, i) => i !== id);
   }
-
-
   
-
+  
+  
+  
+  
 }
