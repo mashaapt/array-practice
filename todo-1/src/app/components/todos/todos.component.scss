@@ -5,6 +5,10 @@
 	border-bottom: 1px solid #DDD;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 .todo:nth-child(even) {
 	background-color: #EEE;
 }

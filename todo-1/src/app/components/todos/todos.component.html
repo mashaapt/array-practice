@@ -1,5 +1,5 @@
 <div class="todos">
-  <form (submit)="addTodo()">
+  <form >
     <input
       type="text"
       name="inputTodo"
@@ -7,21 +7,35 @@
       class="todo-input"
       [(ngModel)]="inputTodo"
     />
-    <input type="submit" value="Add Todo" class="todo-submit"/>
+    <button [hidden]="editingTodo" type="submit" class="todo-submit"
+      (click)="addTodo()">
+      Add Todo
+    </button>
+
+    <button [hidden]="!editingTodo" type="submit" class="todo-submit"
+      (click)="saveEditingTodo()">
+      Save Todo
+    </button>
+
+
     <button class="count">{{todos.length}}</button>
+
+
+
   </form>
-  <div 
-  class="todo {{ todo.completed ? 'done' : '' }}" 
+  <div
+  class="todo {{ todo.completed ? 'done' : '' }}"
   *ngFor="let todo of todos; let i = index">
     <div class="id">{{ i }}</div>
     <div class="content" (click)="toggleDone(i)">{{ todo.content }}</div>
 
     <div class="date"> {{ date | date }}</div>
+    <button class="edit-btn" (click)="clickedEditTodo(i)">Edit</button>
     <button class="delete" (click)="deleteTodo(i)">Remove</button>
 
 
   </div>
-  
+
 
 
 </div>
