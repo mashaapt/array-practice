@@ -1,3 +1,4 @@
+import { BOOL_TYPE } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import { Todo } from './todo.model';
 
@@ -7,7 +8,8 @@ import { Todo } from './todo.model';
 export class DataService {
 
   todos: Todo[] = [
-    new Todo('KIss my boy.')
+    new Todo('Kiss my boy.', false),
+    new Todo('Cook for my boy.',false)
   ];
 
   constructor() { }

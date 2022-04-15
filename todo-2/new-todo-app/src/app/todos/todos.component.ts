@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../shared/data.service';
 import { Todo } from '../shared/todo.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-todos',
@@ -8,11 +10,19 @@ import { Todo } from '../shared/todo.model';
 })
 export class TodosComponent implements OnInit {
 
-  // todos: Todo[];
+  todos: Todo[];
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+
+    this.todos = this.dataService.getAllTodos();
+  }
+
+  onFormSubmit(form: NgForm) {
+    if(form.invalid) return alert('Form is invalid');
+    
+    this.dataService.addTodo(new Todo(form.value.text));
   }
 
 }
