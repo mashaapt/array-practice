@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-
+import { Component, OnInit, Inject} from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Todo } from '../shared/todo.model';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-edit-todo-dialog',
   templateUrl: './edit-todo-dialog.component.html',
@@ -8,13 +9,25 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class EditTodoDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<EditTodoDialogComponent>,
-    @Inject) { }
+  constructor(
+    public dialogRef: MatDialogRef<EditTodoDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public todo: Todo) { }
 
   ngOnInit(): void {
   }
 
-  onFormSubmit(form: NgForm) {
+  close() {
+    this.dialogRef.close();  
+  }
 
+  onFormSubmit(form: NgForm) {
+    if (form.invalid) return;
+
+    const updatedTodo = {
+      ...this.todo,
+      ...form.value
+    }
+
+    this.dialogRef.close(updatedTodo);
   }
 }

@@ -7,21 +7,23 @@
     {{ todo.text }}
   </div>
 
-  <div class="todo-controls-box" (click)="$event.stopPropagation()">
+  <div class="todo-controls-box" appToolTipSingleton (click)="$event.stopPropagation()">
 
-    <div class="todo-control-button" (click)="onEditButton()">
+    <div class="todo-control-button" appToolTip="Edit Todo" (click)="onEditCliked()">
       <i class="material-icons">edit</i>
     </div>
 
-    <div class="todo-control-button">
+    <!-- <div class="todo-control-button">
       <i class="material-icons">note</i>
     </div>
 
     <div class="todo-control-button">
       <i class="material-icons">face</i>
-    </div>
+    </div> -->
 
-    <div class="todo-control-button is-danger">
+    <div class="todo-control-button is-danger"
+        appToolTip="Delete Todo"
+        (click)="onDeleteClicked()">
       <i class="material-icons">delete</i>
     </div>
   </div>
