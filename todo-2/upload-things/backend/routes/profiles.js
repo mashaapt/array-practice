@@ -13,4 +13,4 @@ router.get('/', profilesController.getProfiles);
 
 router.post('/', storage, profilesController.postProfile);
 
-module.export = router;
+module.exports = router;

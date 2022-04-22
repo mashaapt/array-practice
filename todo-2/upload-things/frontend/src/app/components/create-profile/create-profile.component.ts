@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ProfileService } from 'src/app/services/profile.service';
 
 import { Profile } from '../../models/Profile';
 
@@ -12,9 +13,9 @@ export class CreateProfileComponent implements OnInit {
   form: FormGroup;
   profile: Profile;
   imageData: string;
-  profileService: any;
+  // profileService: any;
 
-  constructor() { }
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
