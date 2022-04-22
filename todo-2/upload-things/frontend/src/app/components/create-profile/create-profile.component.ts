@@ -12,6 +12,7 @@ export class CreateProfileComponent implements OnInit {
   form: FormGroup;
   profile: Profile;
   imageData: string;
+  profileService: any;
 
   constructor() { }
 
@@ -36,6 +37,7 @@ export class CreateProfileComponent implements OnInit {
   }
 
   onSubmit() {
+    this.profileService.addProfile(this.form.value.name, this.form.value.image);
     this.form.reset();
     this.imageData = null;
   }
