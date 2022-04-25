@@ -1,12 +1,16 @@
 const multer = require('multer');
+const path = require('path');
 
 const diskStorage = multer.diskStorage(
   {
     destination: (req, file,cb) => {
-      cb(null, 'images');
+      const directory = path.join(__dirname, '../images');
+      console.log('directory', directory);
+
+      cb(null, directory);
     },
     filename: (req, file, cb) => {
-      const mimetype = file.mimetype.split('/');
+      const mimeType = file.mimetype.split('/');
       const fileType = mimeType[1];
       const fileName = file.originalname + '.' + fileType;
       cb(null, fileName);

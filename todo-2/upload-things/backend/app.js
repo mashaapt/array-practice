@@ -1,6 +1,9 @@
-require('dotenv').config();
-
 const path = require('path');
+
+require('dotenv').config({
+  path: path.resolve(__dirname, '.env')
+});
+
 const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -11,7 +14,8 @@ const profilesRoutes = require('./routes/profiles');
 const app = express();
 app.use(cors());
 
-app.use('/images', express.static(path.join('images')));
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/profiles', profilesRoutes);
 

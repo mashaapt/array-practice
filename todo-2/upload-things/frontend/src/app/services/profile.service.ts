@@ -12,7 +12,7 @@ export class ProfileService {
 
   private profiles: Profile[] = [];
   private profiles$ = new Subject<Profile[]>();
-  readonly url = "https://localhost:3000/api/profiles";
+  readonly url = "http://localhost:3000/api/profiles";
 
   constructor(private http: HttpClient) { }
 
@@ -37,7 +37,8 @@ export class ProfileService {
     const profileData = new FormData();
     profileData.append("name", name);
     profileData.append("image", image, name);
-    this.http.post<{ profile: Profile }>(this.url, profileData)
+    this.http
+    .post<{ profile: Profile }>(this.url, profileData)
     .subscribe((profileData) => {
       const profile: Profile = {
         _id: profileData.profile._id,
