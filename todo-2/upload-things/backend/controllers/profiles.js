@@ -7,12 +7,20 @@ exports.getProfiles = async(req, res) => {
 
 exports.postProfile = async(req, res) => {
   const { name } = req.body;
-  const imagePath = 'http://localhost:3000/images/' +req.file.filename;
+
+  const imagePaths = [];
+
+  req.files.forEach(file => {
+    const imagePath = 'http://localhost:3000/images/' +file.filename;
+    imagePaths.push(imagePath);
+  });
+
   //set path dynamically
   const profile = new Profile({
     name,
-    imagePath
-  })
+    imagePaths
+  });
+  
   const createdProfile = await profile.save();
   res.status(201).json({
     profile: {

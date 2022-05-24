@@ -33,21 +33,25 @@ export class ProfileService {
     return this.profiles$.asObservable();
   }
 
-  addProfile(name: string, image: File) {
+  addProfile(name: string, images: File[]) {
     const profileData = new FormData();
     profileData.append("name", name);
-    profileData.append("image", image, name);
+
+    images.forEach(image => {
+      profileData.append("images", image, name);
+    });
+
     this.http
-    .post<{ profile: Profile }>(this.url, profileData)
-    .subscribe((profileData) => {
-      const profile: Profile = {
-        _id: profileData.profile._id,
-        name: name,
-        imagePath: profileData.profile.imagePath
-      };
-      this.profiles.push(profile);
-      this.profiles$.next(this.profiles);
-    })
+      .post<{ profile: Profile }>(this.url, profileData)
+      .subscribe((profileData) => {
+        const profile: Profile = {
+          _id: profileData.profile._id,
+          name: name,
+          imagePath: profileData.profile.imagePath
+        };
+        this.profiles.push(profile);
+        this.profiles$.next(this.profiles);
+      })
   }
-  //append() returns nothing
+
 }
