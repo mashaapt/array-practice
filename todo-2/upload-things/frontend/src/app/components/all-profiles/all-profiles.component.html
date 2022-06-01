@@ -2,7 +2,7 @@
 <hr>
 <div *ngIf="profiles.length > 0">
   <div *ngFor="let profile of profiles" class="profile">
-    <img [src]="profile.imagePath" [alt]="profile.name">
+    <img *ngFor="let image of profile.imagePaths" [src]="image" [alt]="profile.name">
     <div>
       <span>{{ profile.name }}</span>
     </div>

@@ -47,7 +47,7 @@ export class ProfileService {
         const profile: Profile = {
           _id: profileData.profile._id,
           name: name,
-          imagePath: profileData.profile.imagePath
+          imagePaths: profileData.profile.imagePaths
         };
         this.profiles.push(profile);
         this.profiles$.next(this.profiles);
